@@ -48,6 +48,7 @@ body {
   width: 100%;
   margin-top: 123px;
   display:inline-block;
+  padding-bottom: 10%;
 }
 
 .tipo_ref{
@@ -149,6 +150,8 @@ body {
 
 .button{
   display: flex;
+  position: fixed;
+  bottom: 2%;
   width: 364px;
   height: 61px;
   background-color: #CBCBCB;

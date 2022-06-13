@@ -24,21 +24,21 @@
       
       <h3>Primeiro, seu prato</h3>
       <div class="tipo_ref">
-        <div class="opcoes" onclick="SelectItems(this)">
+        <div class="opcoes" onclick="Select_comida(this)">
           <img src="frango.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
           <h5>R$ 14,90</h5>
           <ion-icon name="checkmark-circle"></ion-icon>
         </div>
-        <div class="opcoes" onclick="SelectItems(this)">
+        <div class="opcoes" onclick="Select_comida(this)">
           <img src="frango.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
           <h5>R$ 14,90</h5>
           <ion-icon name="checkmark-circle"></ion-icon>
         </div>
-        <div class="opcoes" onclick="SelectItems(this)">
+        <div class="opcoes" onclick="Select_comida(this)">
           <img src="frango.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
@@ -49,21 +49,21 @@
 
       <h3>Agora, sua bebida</h3>
       <div class="tipo_ref">
-        <div class="opcoes bebida" onclick="SelectItems1(this)">
+        <div class="opcoes" onclick="Select_bebida(this)">
           <img src="coca.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
           <h5>R$ 14,90</h5>
           <ion-icon name="checkmark-circle"></ion-icon>
         </div>
-        <div class="opcoes bebida" onclick="SelectItems1(this)">
+        <div class="opcoes" onclick="Select_bebida(this)">
           <img src="coca.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
           <h5>R$ 14,90</h5>
           <ion-icon name="checkmark-circle"></ion-icon>
         </div>
-        <div class="opcoes bebida" onclick="SelectItems1(this)">
+        <div class="opcoes" onclick="Select_bebida(this)">
           <img src="coca.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
@@ -74,21 +74,21 @@
 
       <h3>Por fim, sua sobremesa</h3>
       <div class="tipo_ref">
-        <div class="opcoes sobremesa" onclick="SelectItems2(this)">
+        <div class="opcoes" onclick="Select_sobremesa(this)">
           <img src="doce.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
           <h5>R$ 14,90</h5>
           <ion-icon name="checkmark-circle"></ion-icon>
         </div>
-        <div class="opcoes sobremesa" onclick="SelectItems2(this)">
+        <div class="opcoes sobremesa" onclick="Select_sobremesa(this)">
           <img src="doce.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
           <h5>R$ 14,90</h5>
           <ion-icon name="checkmark-circle"></ion-icon>
         </div>
-        <div class="opcoes sobremesa" onclick="SelectItems2(this)">
+        <div class="opcoes" onclick="Select_sobremesa(this)">
           <img src="doce.jpg">
           <h4>Frango Yin Yang</h4>
           <p> Um pouco de batata, um pouco de salada</p>
@@ -97,8 +97,8 @@
         </div>
       </div>
 
-    </div class="bottom_bar" onclick="WhatsappCall()">  
-      <div class="button">
+    </div class="bottom_bar">  
+      <div class="button" onclick="WhatsappCall()">
         <p> Selecionar os 3 itens <br /> para fechar o pedido</p>
       </div>
     <div>
@@ -109,51 +109,80 @@
 
   <script>
     let selecao1=0; let selecao2=0; let selecao3=0;
+    let selecao1_at=0; let selecao2_at=0; let selecao3_at=0;
+    let icone1; let icone2; let icone3;
 
-    function SelectItems(element){ 
-      const button_clicked=document.querySelector(".selecao");
-      const button_select=document.querySelector(".selecao ion-icon");
-
-      console.log(element)
-      if (button_clicked!==null){
-        button_clicked.classList.remove("selecao")
-        button_select.style.display="none"
+    function Select_comida(element){ 
+      let icon=element.querySelector("ion-icon");
+      console.log(icon)
+      if (element.classList.contains("selecao")){
+        element.classList.remove("selecao");
+        icon.style.display="none";
+        return
+      }
+      if (selecao1){
+        selecao1.classList.remove("selecao");
+        icone1.style.display="none";
       }
       element.classList.add("selecao")
-      button_select.style.display="initial";
-      selecao1=1;
+      icon.style.display="block";
+      selecao1_at="ativado";
+      selecao1=element;
+      icone1=icon;
+      button_activate()
     }
 
-    function SelectItems1(element){ 
-      const button_clicked=document.querySelector(".bebida .selecao");
-      const button_select=document.querySelector(".selecao ion-icon");
-
-      console.log(element)
-      if (button_clicked!==null){
-        button_clicked.classList.remove("selecao")
-        button_select.style.display="none"
+    function Select_bebida(element){ 
+      let icon=element.querySelector("ion-icon");
+      console.log(icon)
+      if (element.classList.contains("selecao")){
+        element.classList.remove("selecao");
+        icon.style.display="none";
+        return
+      }
+      if (selecao2){
+        selecao2.classList.remove("selecao");
+        icone2.style.display="none";
       }
       element.classList.add("selecao")
-      button_select.style.display="initial";
-      selecao1=1;
+      icon.style.display="block";
+      selecao2_at="ativado";
+      selecao2=element;
+      icone2=icon;
+      button_activate()
     }
 
-    function SelectItems2(element){ 
-      const button_clicked=document.querySelector(".sobremesa .selecao");
-      const button_select=document.querySelector(".selecao ion-icon");
-
-      console.log(element)
-      if (button_clicked!==null){
-        button_clicked.classList.remove("selecao")
-        button_select.style.display="none"
+    function Select_sobremesa(element){ 
+      let icon=element.querySelector("ion-icon");
+      console.log(icon)
+      if (element.classList.contains("selecao")){
+        element.classList.remove("selecao");
+        icon.style.display="none";
+        return
+      }
+      if (selecao3){
+        selecao3.classList.remove("selecao");
+        icone3.style.display="none";
       }
       element.classList.add("selecao")
-      button_select.style.display="initial";
-      selecao1=1;
+      icon.style.display="block";
+      selecao3=element;
+      selecao3_at="ativado";
+      icone3=icon;
+      button_activate()
+    }
+
+    function button_activate(){
+      if (selecao1_at==="ativado" && selecao2_at==="ativado" && selecao3_at==="ativado"){
+        el_finish=document.querySelector(".button")
+        el_finish_p=document.querySelector(".button p")
+        el_finish_p.innerHTML="Fechar pedido";
+        el_finish.style.backgroundColor='#32B72F';
+      }
     }
 
     function WhatsappCall(){
-      if (selecao_tot===3){
+      if (selecao1!==null && selecao2!==null && selecao3!==null){
 
         var celular = "5534996819178";
         var price = Number(27.7).toFixed(2);
@@ -161,15 +190,6 @@
         texto = window.encodeURIComponent(texto);
         window.open("https://api.whatsapp.com/send?phone=" + celular + "&text=" + texto, "_blank");
       }
-    }
-
-    selecao_tot=selecao1+selecao2+selecao3;
-    el_finish=document.querySelector(".button")
-    el_finish_p=document.querySelector(".button p")
-    if (selecao_tot===3){
-      el_finish_p.innerHTML="Fechar pedido";
-      el_finish.style.color="#32B72F";
-
     }
 
   </script>
